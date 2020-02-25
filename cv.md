@@ -13,12 +13,19 @@
 * HTML/CSS
 ### Last code
 ```
--(IBAction)btnSayHello:(UIButton *)sender {
-    for(UILabel *label in self.labelCollection){
-        [self MethodExtract:label];
-        [label sizeToFit];
-        [self.btnTextChanged setTitle:@"OK" forState:UIControlStateNormal];
-    }
+private IConnectionSetupProvider _connectionSetupProvider;
+
+private async Tasck OpenConnectionAndSetUpLib(DbConnection connection, UserConnectionInfo connectionInfo){
+    await TryOpenDbConnectio(connection).ConfigureAwait(false);
+    await _connectionSetupProvider.SetQLinl(connection, connectionInfo.Unit).ConfigureAwait(false);
+    await _connectionSetupProvider.SetQDta(connection, connectionInfo.UserLogin).ConfigureAwait(false);
+    await _connectionSetupProvider.SetTryMarker(connection).ConfigureAwait(false);
+    await CheckSuspendDbConnection(connection);
+}
+
+public async Task CheckSuspendDbConnection(DbConnection connection){
+    var isSuspend = await _connectionSetupProvider.CheckSuspend(connection).ConfigureAwait(false);
+    if(!isSuspend) throw new DbConnectionException("Работа с базой данных временно недоступна");
 }
 ```
 ### Experience
